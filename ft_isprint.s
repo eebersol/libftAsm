@@ -1,15 +1,13 @@
-global _ft_isalpha
+global _ft_isprint
 
 section .text
 
-_ft_isalpha:
-	cmp rdi, 65
+_ft_isprint:
+	cmp rdi, 0
 	jl fail
-	cmp rdi, 91
-	ja succes
-	cmp rdi, 97
-	jl fail
-	cmp rdi, 123
+	cmp rdi, 127
+	ja fail
+	cmp rdi, 31
 	ja succes
 
 fail:
