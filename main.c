@@ -118,7 +118,17 @@ int check_puts(char* str)
     ft_puts(str);
     write(1, "True puts : ", 12);
     puts(str);
-    // printf("Str ; %s\n", ft_puts(str));
+
+    return (strlen(str));
+}
+
+int check_strcat(char *str, char *str2)
+{
+   printf("%s\n", ft_strcat(str, str2));
+    // if (strcmp(ft_strcat(str, str2), strcat(str, str2)))
+    //     is_ok(1);
+    // else
+    //     is_ok(0);
 
     return (strlen(str));
 }
@@ -199,6 +209,7 @@ int main(void)
     ret = check_strlen("Aaaaa");
     ret = check_strlen("Bbb");
     ret = check_strlen("cccc");
+    ret = check_strlen("");
     ret = check_strlen("*dasd");
     ret = check_strlen("-");
     ret = check_strlen("/");
@@ -207,8 +218,10 @@ int main(void)
     ret = check_strlen("0");
     printf("\n\nft_puts : \n");
     ret = check_puts("Aaaaa");
-    // ret = check_puts("Bbbbb");
-    // ret = check_puts("Ccccc");
-    // printf("\n\nfailed == %i\n", ret);
-    // return (ret && ret > 0 ? 2 : 0);
+    ret = check_puts("Bbbbb");
+    ret = check_puts("Ccccc");
+    printf("\n\nft_strcat : \n");
+    ret = check_strcat("123", "456");
+    printf("\n\nfailed == %i\n", ret);
+    return (ret && ret > 0 ? 2 : 0);
 }

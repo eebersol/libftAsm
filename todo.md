@@ -11,7 +11,7 @@ PART 1 ::
 • isprint	-> OK
 • toupper 	-> OK
 • tolower	-> OK
-• puts (bien entendu, vous pouvez appeller le syscall write)
+• puts 		-> OK
 
 
 PART 2 ::
@@ -36,7 +36,7 @@ repne scabs :: https://www.aldeid.com/wiki/X86-assembly/Instructions/repne
 
 tuto : http://deamonftp.free.fr/deamoncrack/Pages/cours-asm.htm#6
 
-instruction List :: [.https://www.felixcloutier.com/x86/.m]
+instruction List :: [.https://www.felixcloutier.com/x86/.m ]
 
 
 sysCall List :: [http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ ]
@@ -51,8 +51,24 @@ https://hackademics.fr/forum/d%C3%A9veloppement/applicatif/autres-aj/1218-progra
 
 
 
+<!-- 
+MY ret : global _ft_strlen
 
+section .text
 
-WHERE AM I :::: 
+_ft_strlen:  
+	cmp rdi, 0 					; Compare with nul asciim
+	je end 						; if equal
+	sub rcx, rcx 				; on se replace a la bonne adresse
+	not rcx 					; on inverse la valeur cela permet de boucler infini avec rpen
+	cld 						; clear flag register
+	mov rax, 0 					; cdt darret
+	repne scasb					; scan bytes of a string until the trailing null character is found 
+	not rcx						; on inverse la valeur cela permet de boucler infini avec rpen
+	dec rcx 					; decrement by one
+	mov rax, rcx				;
 
-On en est a ft_puts, il marche correctement le soucis viens de ft_strlen, il renvoi un pointeur sur la data situé apres la string
+end:
+	ret
+
+ -->

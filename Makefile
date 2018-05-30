@@ -33,6 +33,7 @@ SRC =	ft_bzero.s \
 		ft_tolower.s \
 		ft_puts.s 	\
 		ft_strlen.s \
+		ft_memset.s \
 
 OBJ = $(SRC:.s=.o)
 

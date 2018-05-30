@@ -3,15 +3,14 @@ section .text
 
 
 _ft_bzero:
-	mov r10, rsi ; Recupere le parametre n
 	xor rcx, rcx ; Met a zero le compteur
 
-next:
-	cmp rcx, r10
+test:
+	cmp rcx, rsi ; je compare mon index avec le param index
 	jge done
-	mov byte[rdi + rcx], 0
+	mov byte [rdi + rcx], 0
 	inc rcx
-	jmp next
+	jmp test
 
 done:
 	ret
