@@ -17,8 +17,8 @@ PART 1 ::
 PART 2 ::
 
 • strlen	-> OK
-• memset
-• memcpy
+• memset	-> OK
+• memcpy	-> OK
 • strdup (bien entendu, vous pouvez appeller malloc)
 
 PART 3 ::
