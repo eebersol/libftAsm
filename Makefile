@@ -20,7 +20,6 @@ ASFLAGS = -f macho64
 
 CC = cc -Wall -Wextra -Werror
 
-LIBS = -L ./ -lfts
 
 SRC =	ft_bzero.s \
 		ft_strcat.s \
