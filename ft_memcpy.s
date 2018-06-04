@@ -14,3 +14,9 @@ _ft_memcpy:
 
 done:
 	ret
+
+
+	mov 	rcx, rdx
+	cld
+	rep movsb
+	pop rax

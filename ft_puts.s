@@ -30,3 +30,9 @@ end:
 
 section .data
     newline db '', 10
+    mov ecx,7       ; set up a constant
+    mov [rax],ecx   ; write it into memory
+    mov edx,[rax]   ; read it back from memory
+    mov eax,edx     ; copy into return value register
+
+

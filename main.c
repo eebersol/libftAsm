@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <string.h>
 
 
 
@@ -17,118 +18,6 @@ void    is_ok(int ok)
 	ok ? printf("\033[0;32m\033[1m.\033[0m") : printf("\033[0;31m\033[1mF\033[0m");
 }
 
-// void    print_mem_ascii(unsigned char *buffer)
-// {
-//     printf(" |");
-//     for (int j = 0; j < 16; j++)
-//         printf("%c", buffer[j]);
-//     printf("|");
-// }
-
-// void    print_mem(char *desc, void *addr, int ascii, int len)
-// {
-//     unsigned char *p = addr;
-//     unsigned char buffer[16];
-//     int i = 0;
-//     int pos = 0;
-
-//     printf("%s", desc);
-//     while (i < len)
-//     {
-//         printf("\n");
-//         //ADDRESS
-//         if ((i % 16) == 0)
-//             printf("%p\t", &p[i]);
-
-//         //MEMORY
-//         int l = i + 16;
-//         int k = 0;
-//         bzero(buffer, 16);
-
-//         for (pos = i; (pos < l) && (pos < len); pos++)
-//             {
-//             printf("%02x", p[pos]);
-//             buffer[k] = p[pos];
-//             k == 7 ? printf("  ") : printf(" ");
-//             ++k;
-//         }
-//         i = pos;
-//         //ASCII
-//         if ((i % 16) == 0 && ascii)
-//             print_mem_ascii(buffer);
-//     }
-//     if (ascii)
-//         print_mem_ascii(buffer);
-//     printf("\n");
-// }
-
-
-// int     check_strdup(void)
-// {
-//     int ret;
-//     int test1;
-//     int test2;
-//     char src1[][SIZE] = {
-//         "testOkA asd  ddsd  sww sadsd",
-//         "ok",
-//         "ici",
-//         "",
-//         "x\0",
-//         "\x02",
-//         "\t",
-//         "0123456789abcdefgh",
-//         "\n",
-//         "||||||\x00|||||||\\ _=+212312340"
-//     };
-//     char src2[][SIZE] = {
-//         "testOkA asd  ddsd  sww sadsd",
-//         "ok",
-//         "ici",
-//         "",
-//         "x\0",
-//         "\x02",
-//         "\t",
-//         "0123456789abcdefgh",
-//         "\n",
-//         "||||||\x00|||||||\\ _=+212312340"
-//     };
-//     char *dst1;
-//     char *dst2;
-
-//     ret = 1;
-//     test1 = 1;
-//     test2 = 1;
-//     for (size_t pos = 0; pos < (sizeof(src1) / SIZE); pos++)
-//     {
-//         test1 = 1;
-//         test2 = 1;
-//         dst1 = strdup(src1[pos]);
-//         dst2 = ft_strdup(src2[pos]);
-
-//         if (strcmp(dst1, dst2) != 0)
-//         {
-//             ret = 0;
-//             test1 = 0;
-//         }
-//         if (strcmp(src1[pos], src2[pos]) != 0)
-//         {
-//             ret = 0;
-//             test2 = 0;
-//         }
-
-//         printf("=====BY TEST=====\n");
-//         printf("%s | %s | [%s]\n",dst1, dst2, (test1 ? "OK" : "KO"));
-//         print_mem("strdup: dst1", dst1, 1, SIZE);
-//         print_mem("ft_strdup: dst2", dst2, 1, SIZE);
-//         printf("\n");
-
-//         printf("%s | %s | [%s]\n",src1[pos], src2[pos], (test2 ? "OK" : "KO"));
-//         print_mem("strdup: src1", src1[pos], 1, SIZE);
-//         print_mem("ft_strdup: src2", src2[pos], 1, SIZE);
-//         printf("\n");
-//     }
-//     return (0);
-// }
 
 int check_bzero(int ret)
 {
@@ -240,15 +129,17 @@ int check_puts(char* str)
     return (strlen(str));
 }
 
-int check_strcat(char *str, char *str2)
+int check_strcat(void)
 {
-   printf("%s\n", ft_strcat(str, str2));
-    // if (strcmp(ft_strcat(str, str2), strcat(str, str2)))
-    //     is_ok(1);
-    // else
-    //     is_ok(0);
+    char dest[64] = "hello";
 
-    return (strlen(str));
+
+   strcat(dest , "world");
+   printf ("%s\n", dest);
+   ft_strcat(dest, "TOTO");
+   printf("%s\n", dest);
+
+    return (0);
 }
 
 void check_memset (void)
@@ -417,6 +308,9 @@ int main(void)
     check_memcpy();
     printf("\n\nft_strdup : \n");
     check_strdupbis();
+    printf("\n\nft_strcat : \n");
+    ret = check_strcat();
     printf("finish\n");
+    printf("%s\n", ft_cat(1));
     return (0);
 }
