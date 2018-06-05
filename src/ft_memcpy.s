@@ -2,7 +2,6 @@ section .text
 	global _ft_memcpy
 	extern _ft_strlen
 
-
 _ft_memcpy:
 	mov rdx, rcx			; On save la len 
 	xor rcx, rcx 			; Met a zero le compteur
@@ -14,9 +13,3 @@ _ft_memcpy:
 
 done:
 	ret
-
-
-	mov 	rcx, rdx
-	cld
-	rep movsb
-	pop rax

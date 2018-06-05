@@ -218,6 +218,7 @@ void check_memcpy (void)
 int main(void)
 {
     int ret = 0;
+    
     printf("Start testing :");
     ret = check_bzero(ret);
     printf("\n\nft_isalpha : \n");
@@ -311,6 +312,7 @@ int main(void)
     printf("\n\nft_strcat : \n");
     ret = check_strcat();
     printf("finish\n");
-    printf("%s\n", ft_cat(1));
+    ft_cat(1);
+    // ft_test("NOTHING");
     return (0);
 }

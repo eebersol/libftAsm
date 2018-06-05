@@ -1,6 +1,5 @@
-global _ft_isprint
-
 section .text
+	global _ft_isprint
 
 _ft_isprint:
 	cmp rdi, 0

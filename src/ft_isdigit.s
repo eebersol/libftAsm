@@ -1,7 +1,5 @@
-global _ft_isdigit
-
 section .text
-
+	global _ft_isdigit
 _ft_isdigit:
 	mov rax, 1
 	cmp rdi, 49

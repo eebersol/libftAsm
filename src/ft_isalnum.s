@@ -1,6 +1,5 @@
-global _ft_isalnum
-
 section .text
+	global _ft_isalnum
 
 _ft_isalnum:
 	cmp rdi, 122
@@ -8,7 +7,6 @@ _ft_isalnum:
 	cmp rdi, 97
 	jl check_lower
 	jae succes
-
 
 check_lower:
 	cmp rdi, 90

@@ -1,7 +1,6 @@
 section .text
 	global _ft_memset
 
-
 _ft_memset:
 	cmp rdx, 0		; check len
 	je done
@@ -13,25 +12,4 @@ _ft_memset:
 
 done:
 	mov rax, r8 	; restore pointer
-	ret
-
-
-
-
-
-
-
-
-
-
-
-	xor rdx, rdx
-	xor rcx, rcx
-
-
-	mov rax, rsi 	; Value a comparer
-	mov rcx, rdx	; nombre d iteration
-	cld				; type diteration
-	rep stosb		; iteration
-	mov rax, rdi
 	ret

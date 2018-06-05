@@ -1,6 +1,5 @@
-global _ft_isalpha
-
 section .text
+	global _ft_isalpha
 
 _ft_isalpha:
 	cmp rdi, 65

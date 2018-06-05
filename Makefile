@@ -10,34 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftasm.a
+NAME 			= libftasm.a
 
-NAME_TEST = test
+NAME_TEST 		= test
 
-AS = nasm
+AS 				= nasm
 
-ASFLAGS = -f macho64
+ASFLAGS 		= -f macho64
 
-CC = cc -Wall -Wextra -Werror
+CC 				= cc -Wall -Wextra -Werror
 
+SRC 			=	src/ft_bzero.s \
+					src/ft_strcat.s \
+					src/ft_isalpha.s \
+					src/ft_isdigit.s \
+					src/ft_isalnum.s \
+					src/ft_isascii.s \
+					src/ft_isprint.s \
+					src/ft_toupper.s \
+					src/ft_tolower.s \
+					src/ft_puts.s 	\
+					src/ft_strlen.s \
+					src/ft_memset.s \
+					src/ft_memcpy.s \
+					src/ft_strdup.s \
+					src/ft_cat.s 	\
 
-SRC =	ft_bzero.s \
-		ft_strcat.s \
-		ft_isalpha.s \
-		ft_isdigit.s \
-		ft_isalnum.s \
-		ft_isascii.s \
-		ft_isprint.s \
-		ft_toupper.s \
-		ft_tolower.s \
-		ft_puts.s 	\
-		ft_strlen.s \
-		ft_memset.s \
-		ft_memcpy.s \
-		ft_strdup.s \
-		ft_cat.s 	\
-
-OBJ = $(SRC:.s=.o)
+OBJ 			= $(SRC:.s=.o)
 
 all: $(NAME)
 

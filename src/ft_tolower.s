@@ -1,20 +1,19 @@
-global _ft_toupper
-
 section .text
+	global _ft_tolower
 
-_ft_toupper:
-	cmp rdi, 97
+_ft_tolower:
+	mov rax, 1
+	cmp rdi, 65
 	jl fail
-	cmp rdi, 122
+	cmp rdi, 91
 	jl succes
-
 
 fail:
 	mov rax, rdi
 	jmp end
 
 succes:
-	sub rdi, 20H
+	add rdi, 20H
 	mov rax, rdi
 	jmp end
 

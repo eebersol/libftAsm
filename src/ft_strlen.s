@@ -1,6 +1,5 @@
-global _ft_strlen
-
 section .text
+	global _ft_strlen
 
 _ft_strlen:  
 	cmp rdi, 0 					; Compare with nul asciim

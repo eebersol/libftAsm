@@ -1,13 +1,10 @@
-
-global _ft_puts
-extern _ft_strlen
-
 section .text
+    global _ft_puts
+    extern _ft_strlen
 
 _ft_puts:
     ; on save la string
     mov rsi, rdi
-
     call _ft_strlen
 
     ; on reinit la string a sa valeur de depart
@@ -17,7 +14,7 @@ _ft_puts:
     mov rax, 0x2000004                ; write
     mov rsi, rdi                      ; message
     mov rdi, 1                        ; stdoutm
-    syscall
+    syscall                           ; write
 
     ; ajout du '\n'
     mov rdx, 1
@@ -30,9 +27,3 @@ end:
 
 section .data
     newline db '', 10
-    mov ecx,7       ; set up a constant
-    mov [rax],ecx   ; write it into memory
-    mov edx,[rax]   ; read it back from memory
-    mov eax,edx     ; copy into return value register
-
-

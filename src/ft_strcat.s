@@ -1,7 +1,6 @@
-global _ft_strcat
-extern _ft_strlen
-
 section .text
+	global _ft_strcat
+	extern _ft_strlen
 
 _ft_strcat:	
 	enter 16, 0

@@ -3,7 +3,7 @@ PART 1 ::
 
 
 • bzero		-> OK
-• strcat
+• strcat	-> OK
 • isalpha	-> OK
 • isdigit	-> OK
 • isalnum	-> OK
@@ -23,8 +23,8 @@ PART 2 ::
 
 PART 3 ::
 
-• cat
-
+• cat 		-> OK
+		
 
 
 
