@@ -169,8 +169,15 @@ void check_memset (void)
 }
 
 
-void    check_strdupbis(void)
+void    check_strdup(void)
 {
+
+	/**
+	** -------------------------------------------------------------------------
+	** ft_strdup.s
+	** -------------------------------------------------------------------------
+	**/
+
     char *str;
     char *new;
 
@@ -182,37 +189,86 @@ void    check_strdupbis(void)
     new = ft_strdup(str);
     printf("%s -- %p - %p\n", new, (void*)new, (void*)str);
 }
+
 void check_memcpy (void)
+{
+	/**
+	** -------------------------------------------------------------------------
+	** ft_memset.s
+	** -------------------------------------------------------------------------
+	**/
+
+	char	mems[4];
+	char	memsdest[4];
+
+	ft_bzero(memsdest, 3);
+	printf("str[0] = %d\n", mems[0]);
+	printf("str[1] = %d\n", mems[1]);
+	printf("str[2] = %d\n", mems[2]);
+	printf("str[3] = %d\n", mems[3]);
+	printf("--- memseting with 'a' ---\n");
+	ft_memset(mems, 'b', 4);
+
+	printf("TRUE memcpy\n");
+	memcpy(memsdest, mems, 4);
+	printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
+	printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
+	printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
+	printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
+	
+	printf("MY memcpy\n");
+	ft_memcpy(memsdest, mems, 4);
+	printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
+	printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
+	printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
+	printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
+}
+
+/**
+** -------------------------------------------------------------------------
+** BONUS
+** -------------------------------------------------------------------------
+**/
+
+void	check_putchar (char c)
+{
+	/**
+	** -------------------------------------------------------------------------
+	** ft_putchar.s
+	** -------------------------------------------------------------------------
+	**/
+	ft_putchar(c);
+	 putchar(c);
+}
+
+void    check_putchar_fd (char c, int fd)
 {
     /**
     ** -------------------------------------------------------------------------
-    ** ft_memset
+    ** ft_putchar.s
     ** -------------------------------------------------------------------------
     **/
-    char    mems[4];
-    char    memsdest[4];
+    ft_putchar_fd(c, fd);
+}
 
-    ft_bzero(memsdest, 3);
-    printf("str[0] = %d\n", mems[0]);
-    printf("str[1] = %d\n", mems[1]);
-    printf("str[2] = %d\n", mems[2]);
-    printf("str[3] = %d\n", mems[3]);
-    printf("--- memseting with 'a' ---\n");
-    ft_memset(mems, 'b', 4);
+void    check_puts_fd (char *str, int fd)
+{
+    /**
+    ** -------------------------------------------------------------------------
+    ** ft_putchar.s
+    ** -------------------------------------------------------------------------
+    **/
+    ft_puts_fd(str, fd);
+}
 
-    printf("TRUE memcpy\n");
-    memcpy(memsdest, mems, 4);
-    printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
-    printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
-    printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
-    printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
-    
-    printf("MY memcpy\n");
-    ft_memcpy(memsdest, mems, 4);
-    printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
-    printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
-    printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
-    printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
+void    check_str_search (char *str, int found)
+{
+    /**
+    ** -------------------------------------------------------------------------
+    ** ft_putchar.s
+    ** -------------------------------------------------------------------------
+    **/
+    printf("i :: %c\n", ft_str_search(str, found));
 }
 
 int main(void)
@@ -308,11 +364,29 @@ int main(void)
     printf("\n\nft_memcpy : \n");
     check_memcpy();
     printf("\n\nft_strdup : \n");
-    check_strdupbis();
+    check_strdup();
     printf("\n\nft_strcat : \n");
     ret = check_strcat();
     printf("finish\n");
-    ft_cat(1);
-    // ft_test("NOTHING");
+    // ft_cat(1);
+    printf("Bonus : \n");
+    printf("ft_putchar : \n");
+    check_putchar('c');
+    check_putchar('1');
+    check_putchar('4');
+    printf("\nft_putchar_fd : \n");
+    check_putchar_fd('c', 0);
+    check_putchar_fd('1', 2 );
+    check_putchar_fd('4', 3);
+    printf("\nft_puts_fd : \n");
+    check_puts_fd("COUCOU", 0);
+    check_puts_fd("COUCOU", 1);
+    check_puts_fd("COUCOU", 2);
+    printf("\nft_str_search : \n");
+    check_str_search("ABCDEF", 'A');
+    // check_str_search("123456", '1');
+    // check_str_search("EDOUARD", 'E');
+    printf("ici\n");
+
     return (0);
 }

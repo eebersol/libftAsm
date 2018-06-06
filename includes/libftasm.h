@@ -19,6 +19,13 @@ void 	*ft_memcpy(void *dest, const void *src, size_t n);
 char 	*ft_strdup(const char *s);
 void 	*ft_cat(int fd);
 
+
+// Bonus
+void 	ft_putchar(char c);
+void 	ft_putchar_fd(char c, int fd);
+void 	ft_puts_fd(char *str, int fd);
+char		ft_str_search(char *str, char find);
+
 #endif
 
 

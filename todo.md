@@ -24,7 +24,21 @@ PART 2 ::
 PART 3 ::
 
 • cat 		-> OK
-		
+
+
+
+BONUS
+
+ft_putchar 		-> OK
+ft_putchar_fd 	-> OK
+ft_puts_fd 		-> OK
+ft_mult			->
+ft_add 			->
+ft_sub			->
+ft_div 			->
+ft_square 		->
+ft_strrjoin 	->
+ft_substr 		->
 
 
 

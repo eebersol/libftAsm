@@ -35,6 +35,11 @@ SRC 			=	src/ft_bzero.s \
 					src/ft_memcpy.s \
 					src/ft_strdup.s \
 					src/ft_cat.s 	\
+					src/bonus/ft_putchar.s \
+					src/bonus/ft_putchar_fd.s \
+					src/bonus/ft_puts_fd.s \
+					src/bonus/ft_str_search.s \
+
 
 OBJ 			= $(SRC:.s=.o)
 
