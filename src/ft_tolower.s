@@ -13,7 +13,7 @@ fail:
 	jmp end
 
 succes:
-	add rdi, 20H
+	add rdi, 20H ; increment rdi pour passer le char en maj
 	mov rax, rdi
 	jmp end
 

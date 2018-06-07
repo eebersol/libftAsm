@@ -15,7 +15,7 @@ _ft_strdup:
 	
 	mov rdi, rax		; Je donne ma zone allouée
 	mov rsi, r15		; Je lui donne la string a copier
-	mov rcx, r12		; je lui dinne sa longeur
+	mov rcx, r12		; je lui donne sa longeur
 	cld
 	rep movsb			; je lance literation
 

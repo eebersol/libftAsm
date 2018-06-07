@@ -5,8 +5,7 @@ section .text
 _ft_memcpy:
 	mov rdx, rcx			; On save la len 
 	xor rcx, rcx 			; Met a zero le compteur
-
-	mov rax, [rsi + rcx] 	; Value a comparer
+	mov rax, [rsi + rcx] 	; Value a modifier
 	mov rcx, rdx			; nombre d iteration
 	cld						; type diteration
 	rep stosb				; iteration

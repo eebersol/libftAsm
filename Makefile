@@ -38,7 +38,9 @@ SRC 			=	src/ft_bzero.s \
 					src/bonus/ft_putchar.s \
 					src/bonus/ft_putchar_fd.s \
 					src/bonus/ft_puts_fd.s \
-					src/bonus/ft_str_search.s \
+					src/bonus/ft_isupper.s \
+					src/bonus/ft_islower.s \
+					src/bonus/ft_isspace.s \
 
 
 OBJ 			= $(SRC:.s=.o)

@@ -2,9 +2,9 @@ section .text
 	global _ft_isascii
 
 _ft_isascii:
-	cmp rdi, 0
+	cmp rdi, 0		; Je compare le debut de la table ascii
 	jl fail
-	cmp rdi, 127
+	cmp rdi, 127 	; Je compare avec le fin de la table ascii
 	jl succes
 
 fail:

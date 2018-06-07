@@ -2,25 +2,25 @@ section .text
 	global _ft_isalnum
 
 _ft_isalnum:
-	cmp rdi, 122
+	cmp rdi, 122		; Je compare le char avec 'z'
 	ja fail
-	cmp rdi, 97
-	jl check_lower
+	cmp rdi, 97			; Je compare le char avec 'a'
+	jl check_alpha
 	jae succes
 
-check_lower:
-	cmp rdi, 90
+check_alpha:
+	cmp rdi, 90			; Je compare le char avec 'Z'
 	ja fail
-	cmp rdi, 65
+	cmp rdi, 65			; Je compare le char avec 'A'
 	jl check_digit
-	jae succes
+	jmp succes
 
 check_digit:
-	cmp rdi, 57
+	cmp rdi, 57 		; Je compare le char avec '9'
 	ja fail
-	cmp rdi , 49
+	cmp rdi , 48		; Je compare le char avec '0'
 	jl fail
-	jae succes
+	jmp succes
 	
 fail:
 	mov rax, 0

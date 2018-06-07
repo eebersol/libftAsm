@@ -2,15 +2,17 @@ section .text
 	global _ft_strlen
 
 _ft_strlen:  
-	cmp rdi, 0 					; Compare with nul asciim
+	cmp rdi, 0 					; On check si \0
 	je end 						; if equal
-	sub rcx, rcx 				; on se replace a la bonne adresse
-	not rcx 					; on inverse la valeur cela permet de boucler infini avec rpen
-	cld 						; clear flag register
-	mov rax, 0 					; cdt darret
-	repne scasb					; scan bytes of a string until the trailing null character is found 
-	not rcx						; on inverse la valeur cela permet de boucler infini avec rpen
-	dec rcx 					; decrement by one
+
+	xor rax, rax 				; clear rax register
+	xor rcx, rcx 				; clear rcx register
+
+	not rcx 					; inverse la value de rcx
+	cld 						;
+	repne scasb					; scan bytes of a string until the null character is found 
+	not rcx						; reverse la value de rcx
+	dec rcx 					; decrement by one pour se mettre sur le \0
 	mov rax, rcx				;
 
 end:

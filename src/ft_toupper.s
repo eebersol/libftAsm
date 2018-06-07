@@ -4,7 +4,7 @@ section .text
 _ft_toupper:
 	cmp rdi, 97
 	jl fail
-	cmp rdi, 122
+	cmp rdi, 123
 	jl succes
 
 
@@ -13,7 +13,7 @@ fail:
 	jmp end
 
 succes:
-	sub rdi, 20H
+	sub rdi, 20H 	; decrement rdi pour passer le char en maj
 	mov rax, rdi
 	jmp end
 

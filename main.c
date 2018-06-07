@@ -19,12 +19,11 @@ void    is_ok(int ok)
 }
 
 
-int check_bzero(int ret)
+void check_bzero(void)
 {
     char *ptr 	= NULL;
     int i 		= 50;
-
-    printf("\n\nft_bzero : \n");    
+ 
     ptr 		= (char *)malloc(sizeof(char) * i);
     ft_bzero(ptr, i);
     while (--i >= 0)
@@ -32,114 +31,202 @@ int check_bzero(int ret)
         if (ptr[i] == 0)
             is_ok(1);
         else
-        {
             is_ok(0);
-            ret++;
-        }
     }    
-    return (ret);
+	return;
 }
 
-int check_isalpha(int ret)
+void check_isalpha(void)
 {
-   if (ft_isalpha(ret) == isalpha(ret))
-		is_ok(1);
-	else
-		is_ok(0);
-    return (ret);
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isalpha(test) == isalpha(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_isdigit(int ret)
+void check_isdigit(void)
 {
-   if (ft_isdigit(ret) == isdigit(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isdigit(test) == isdigit(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_isalnum(int ret)
+void check_isalnum(void)
 {
-   if (ft_isalnum(ret) == isalnum(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isalnum(test) == isalnum(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_isascii(int ret)
+void check_isascii(void)
 {
-   if (ft_isascii(ret) == isascii(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isascii(test) == isascii(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_isprint(int ret)
+void check_isspace(void)
 {
-   if (ft_isprint(ret) == isprint(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = 0;
+	while (test != '~')
+	{
+		if (ft_isspace(test) == isspace(test))
+			is_ok(1);
+		else
+			is_ok(0);
+
+		test++;
+	}
+	return;
 }
 
-int check_toupper(int ret)
+void check_isprint(void)
 {
-   if (ft_toupper(ret) == toupper(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isprint(test) == isprint(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_tolower(int ret)
+void check_toupper(void)
+{
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_toupper(test) == toupper(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
+}
+
+void check_tolower(void)
 {   
-    if (ft_tolower(ret) == tolower(ret))
-        is_ok(1);
-    else
-        is_ok(0);
+	int test;
 
-    return (ret);
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_tolower(test) == tolower(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
 }
 
-int check_strlen(char* str)
-{   
+void check_islower(void)
+{
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_islower(test) == islower(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
+}
+
+void check_isupper(void)
+{
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isupper(test) == isupper(test))
+			is_ok(1);
+		else
+			is_ok(0);
+		test++;
+	}
+	return;
+
+}
+
+void check_strlen(char *str)
+{
     if (ft_strlen(str) == strlen(str))
         is_ok(1);
     else
         is_ok(0);
 
-    return (strlen(str));
+    return ;
 }
 
-int check_puts(char* str)
+void check_puts(char* str)
 {
-    write(1, "My puts : ", 10);  
     ft_puts(str);
-    write(1, "True puts : ", 12);
     puts(str);
 
-    return (strlen(str));
+    return;
 }
 
-int check_strcat(void)
+void check_strcat(void)
 {
     char dest[64] = "hello";
+    char dest_true[64] = "hello";
 
 
    strcat(dest , "world");
    printf ("%s\n", dest);
-   ft_strcat(dest, "TOTO");
-   printf("%s\n", dest);
-
-    return (0);
+   ft_strcat(dest_true, "world");
+   printf("%s\n", dest_true);
+   return;
 }
 
 void check_memset (void)
@@ -149,11 +236,7 @@ void check_memset (void)
     ** ft_memset
     ** -------------------------------------------------------------------------
     **/
-
-    // char *mems;
     char    mems[4];
-
-    // mems = (char*)malloc(sizeof(char)* 4);
 
     ft_bzero(mems, 4);
     printf("str[0] = %d\n", mems[0]);
@@ -171,13 +254,11 @@ void check_memset (void)
 
 void    check_strdup(void)
 {
-
 	/**
 	** -------------------------------------------------------------------------
 	** ft_strdup.s
 	** -------------------------------------------------------------------------
 	**/
-
     char *str;
     char *new;
 
@@ -197,7 +278,6 @@ void check_memcpy (void)
 	** ft_memset.s
 	** -------------------------------------------------------------------------
 	**/
-
 	char	mems[4];
 	char	memsdest[4];
 
@@ -224,31 +304,42 @@ void check_memcpy (void)
 	printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
 }
 
-/**
-** -------------------------------------------------------------------------
-** BONUS
-** -------------------------------------------------------------------------
-**/
-
-void	check_putchar (char c)
+void	check_putchar (void)
 {
 	/**
 	** -------------------------------------------------------------------------
 	** ft_putchar.s
 	** -------------------------------------------------------------------------
 	**/
-	ft_putchar(c);
-	 putchar(c);
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isprint(test) == isprint(test))
+			ft_putchar(test);
+		test++;
+	}
+	return;
 }
 
-void    check_putchar_fd (char c, int fd)
+void    check_putchar_fd (int fd)
 {
     /**
     ** -------------------------------------------------------------------------
     ** ft_putchar.s
     ** -------------------------------------------------------------------------
     **/
-    ft_putchar_fd(c, fd);
+	int test;
+
+	test = '!';
+	while (test != '~')
+	{
+		if (ft_isprint(test) == isprint(test))
+			ft_putchar_fd(test, fd);
+		test++;
+	}
+	return;
 }
 
 void    check_puts_fd (char *str, int fd)
@@ -261,104 +352,48 @@ void    check_puts_fd (char *str, int fd)
     ft_puts_fd(str, fd);
 }
 
-void    check_str_search (char *str, int found)
-{
-    /**
-    ** -------------------------------------------------------------------------
-    ** ft_putchar.s
-    ** -------------------------------------------------------------------------
-    **/
-    printf("i :: %c\n", ft_str_search(str, found));
-}
 
 int main(void)
 {
-    int ret = 0;
     
     printf("Start testing :");
-    ret = check_bzero(ret);
-    printf("\n\nft_isalpha : \n");
-    ret = check_isalpha('a');
-    ret = check_isalpha('b');
-    ret = check_isalpha('c');
-    ret = check_isalpha(1);
-    ret = check_isalpha(1);
-    ret = check_isalpha(111);
-    printf("\n\nft_isgit : \n");
-    ret = check_isdigit(1);
-    ret = check_isdigit(2);
-    ret = check_isdigit(3);
-    ret = check_isdigit('a');
-    ret = check_isdigit('b');
-    ret = check_isdigit('c');
-    ret = check_isdigit(40);
-    ret = check_isdigit(50);
-    ret = check_isdigit(60);
-    printf("\n\nft_isalnum : \n");
-    ret = check_isalnum(1);
-    ret = check_isalnum(2);
-    ret = check_isalnum(3);
-    ret = check_isalnum('*');
-    ret = check_isalnum('-');
-    ret = check_isalnum('/');
-    ret = check_isalnum(400);
-    ret = check_isalnum(50);
-    ret = check_isalnum(60);
-    printf("\n\nft_isascii : \n");
-    ret = check_isascii(1);
-    ret = check_isascii(2);
-    ret = check_isascii(3);
-    ret = check_isascii('*');
-    ret = check_isascii('-');
-    ret = check_isascii('/');
-    ret = check_isascii(400000000);
-    ret = check_isascii(50);
-    ret = check_isascii(60);
-    printf("\n\nft_isprint : \n");
-    ret = check_isprint(1);
-    ret = check_isprint(2);
-    ret = check_isprint(3);
-    ret = check_isprint('*');
-    ret = check_isprint('-');
-    ret = check_isprint('/');
-    ret = check_isprint(400000000);
-    ret = check_isprint(50);
-    ret = check_isprint(60);
-    printf("\n\nft_toupper : \n");
-    ret = check_toupper('a');
-    ret = check_toupper('b');
-    ret = check_toupper('C');
-    ret = check_toupper('*');
-    ret = check_toupper('-');
-    ret = check_toupper('/');
-    ret = check_toupper(400000000);
-    ret = check_toupper(50);
-    ret = check_toupper(60);
-    printf("\n\nft_tolower : \n");
-    ret = check_tolower('A');
-    ret = check_tolower('B');
-    ret = check_tolower('c');
-    ret = check_tolower('*');
-    ret = check_tolower('-');
-    ret = check_tolower('/');
-    ret = check_tolower(400000000);
-    ret = check_tolower(50);
-    ret = check_tolower(60);
-    printf("\n\nft_strlen : \n");
-    ret = check_strlen("Aaaaa");
-    ret = check_strlen("Bbb");
-    ret = check_strlen("cccc");
-    ret = check_strlen("");
-    ret = check_strlen("*dasd");
-    ret = check_strlen("-");
-    ret = check_strlen("/");
-    ret = check_strlen("0");
-    ret = check_strlen("0");
-    ret = check_strlen("0");
-    printf("\n\nft_puts : \n");
-    ret = check_puts("Aaaaa");
-    ret = check_puts("Bbbbb");
-    ret = check_puts("Ccccc");
+    printf("\nft_bzero : ");
+    check_bzero();
+    printf("\nft_isalpha : ");
+    check_isalpha();
+    printf("\n\nft_isgit : ");
+    check_isdigit();
+    printf("\n\nft_isalnum : ");
+    check_isalnum();
+    printf("\n\nft_isascii : ");
+    check_isascii();
+    printf("\n\nft_isprint : ");
+    check_isprint();
+    printf("\n\nft_toupper : ");
+    check_toupper();
+    printf("\n\nft_tolower : ");
+    check_tolower();
+    printf("\n\n[BONUS] - ft_islower : \n");
+    check_islower();
+    printf("\n\n[BONUS] - ft_isupper : \n");
+    check_isupper();
+    printf("\n\n[BONUS] - ft_isspace : ");
+    check_isspace();
+    printf("\n\nft_strlen : ");
+    check_strlen("Aaaaa");
+    check_strlen("Bbb");
+    check_strlen("cccc");
+    check_strlen("");
+    check_strlen("*dasd");
+    check_strlen("-");
+    check_strlen("/");
+    check_strlen("0");
+    check_strlen("0");
+    check_strlen("0");
+    printf("\n\nft_puts :\n\n");
+    check_puts("Aaaaa");
+    check_puts("Bbbbb");
+    check_puts("Ccccc");
     printf("\n\nft_memset : \n");
     check_memset();
     printf("\n\nft_memcpy : \n");
@@ -366,27 +401,16 @@ int main(void)
     printf("\n\nft_strdup : \n");
     check_strdup();
     printf("\n\nft_strcat : \n");
-    ret = check_strcat();
-    printf("finish\n");
+    check_strcat();
     // ft_cat(1);
-    printf("Bonus : \n");
-    printf("ft_putchar : \n");
-    check_putchar('c');
-    check_putchar('1');
-    check_putchar('4');
-    printf("\nft_putchar_fd : \n");
-    check_putchar_fd('c', 0);
-    check_putchar_fd('1', 2 );
-    check_putchar_fd('4', 3);
-    printf("\nft_puts_fd : \n");
+    printf("\n\nBonus : \n");
+    printf("\n\nft_putchar : \n");
+    check_putchar();
+    printf("\n\n[BONUS] - ft_putchar_fd : \n");
+    check_putchar_fd(1);
+    printf("\n\n[BONUS] - ft_puts_fd : \n");
     check_puts_fd("COUCOU", 0);
-    check_puts_fd("COUCOU", 1);
+    check_puts_fd("", 1);
     check_puts_fd("COUCOU", 2);
-    printf("\nft_str_search : \n");
-    check_str_search("ABCDEF", 'A');
-    // check_str_search("123456", '1');
-    // check_str_search("EDOUARD", 'E');
-    printf("ici\n");
-
     return (0);
 }
