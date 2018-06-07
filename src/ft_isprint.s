@@ -4,7 +4,7 @@ section .text
 _ft_isprint:
 	cmp rdi, 0
 	jl fail
-	cmp rdi, 127
+	cmp rdi, 126
 	ja fail
 	cmp rdi, 31
 	ja succes

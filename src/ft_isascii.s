@@ -4,7 +4,7 @@ section .text
 _ft_isascii:
 	cmp rdi, 0		; Je compare le debut de la table ascii
 	jl fail
-	cmp rdi, 127 	; Je compare avec le fin de la table ascii
+	cmp rdi, 128 	; Je compare avec le fin de la table ascii
 	jl succes
 
 fail:

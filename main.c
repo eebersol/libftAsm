@@ -41,7 +41,7 @@ void check_isalpha(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isalpha(test) == isalpha(test))
 			is_ok(1);
@@ -57,7 +57,7 @@ void check_isdigit(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isdigit(test) == isdigit(test))
 			is_ok(1);
@@ -73,7 +73,7 @@ void check_isalnum(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isalnum(test) == isalnum(test))
 			is_ok(1);
@@ -89,7 +89,7 @@ void check_isascii(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isascii(test) == isascii(test))
 			is_ok(1);
@@ -105,7 +105,7 @@ void check_isspace(void)
 	int test;
 
 	test = 0;
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isspace(test) == isspace(test))
 			is_ok(1);
@@ -122,7 +122,7 @@ void check_isprint(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test <= 127)
 	{
 		if (ft_isprint(test) == isprint(test))
 			is_ok(1);
@@ -138,7 +138,7 @@ void check_toupper(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_toupper(test) == toupper(test))
 			is_ok(1);
@@ -154,7 +154,7 @@ void check_tolower(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_tolower(test) == tolower(test))
 			is_ok(1);
@@ -170,7 +170,7 @@ void check_islower(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_islower(test) == islower(test))
 			is_ok(1);
@@ -186,7 +186,7 @@ void check_isupper(void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isupper(test) == isupper(test))
 			is_ok(1);
@@ -208,25 +208,59 @@ void check_strlen(char *str)
     return ;
 }
 
-void check_puts(char* str)
+void check_puts()
 {
-    ft_puts(str);
-    puts(str);
+	int             ret;
+	int             puts_ret1;
+	int             puts_ret2;
+	int             out;
+	int             p[2];
+	char    buf[10000];
 
-    return;
+	out = dup(1);
+	pipe(p);
+	dup2(p[1], 1);
+	puts_ret1 = ft_puts("aaa");
+	puts_ret2 = ft_puts(NULL);
+	dup2(out, 1);
+	ret = read(p[0], buf, 10000);
+	buf[ret] = 0;
+	close(p[0]);
+	close(p[1]);
+	close(out);
+	if (puts_ret1 > 0)
+		is_ok(1);
+	else
+		is_ok(0);
+	if (puts_ret2 > 0)
+		is_ok(1);
+	else
+		is_ok(0);
+	if (strcmp(buf, "aaa\n(null)\n") == 0)
+		is_ok(1);
+	else
+		is_ok(0);
 }
 
 void check_strcat(void)
 {
-    char dest[64] = "hello";
-    char dest_true[64] = "hello";
+	char    buf[9];
 
-
-   strcat(dest , "world");
-   printf ("%s\n", dest);
-   ft_strcat(dest_true, "world");
-   printf("%s\n", dest_true);
-   return;
+	bzero(buf, 9);
+	
+	ft_strcat(buf, "");
+	ft_strcat(buf, "Bon");
+	ft_strcat(buf, "j");
+	ft_strcat(buf, "our.");
+	ft_strcat(buf, "");
+	if (strcmp(buf, "Bonjour.") == 0)
+		is_ok(1);
+	else
+		is_ok(0);
+	if (buf == ft_strcat(buf, ""))
+		is_ok(1);
+	else
+		is_ok(0);
 }
 
 void check_memset (void)
@@ -236,21 +270,25 @@ void check_memset (void)
     ** ft_memset
     ** -------------------------------------------------------------------------
     **/
-    char    mems[4];
+	char    b1[100], b2[100];
 
-    ft_bzero(mems, 4);
-    printf("str[0] = %d\n", mems[0]);
-    printf("str[1] = %d\n", mems[1]);
-    printf("str[2] = %d\n", mems[2]);
-    printf("str[3] = %d\n", mems[3]);
-    printf("--- memseting with 'a' ---\n");
-    ft_memset(mems, 'a', 4);
-    printf("str[0] = %c (%d)\n", mems[0], mems[0]);
-    printf("str[1] = %c (%d)\n", mems[1], mems[1]);
-    printf("str[2] = %c (%d)\n", mems[2], mems[2]);
-    printf("str[3] = %c (%d)\n", mems[3], mems[3]);
+	ft_memset(b1, 42, 100);
+	memset(b2, 42, 100);
+	if (memset(b1, 99, 0) == ft_memset(b1, 99, 0))
+		is_ok(1);
+	else
+		is_ok(0);
+	if (memcmp(b1, b2, 100) == 0)
+		is_ok(1);
+	else
+		is_ok(0);
+	b1[0] = 1;
+	ft_memset(b1, 0, 0);
+	if (b1[0] == 1)
+		is_ok(1);
+	else
+		is_ok(0);
 }
-
 
 void    check_strdup(void)
 {
@@ -278,30 +316,23 @@ void check_memcpy (void)
 	** ft_memset.s
 	** -------------------------------------------------------------------------
 	**/
-	char	mems[4];
-	char	memsdest[4];
+	char    b1[100], b2[100];
+	int i;
 
-	ft_bzero(memsdest, 3);
-	printf("str[0] = %d\n", mems[0]);
-	printf("str[1] = %d\n", mems[1]);
-	printf("str[2] = %d\n", mems[2]);
-	printf("str[3] = %d\n", mems[3]);
-	printf("--- memseting with 'a' ---\n");
-	ft_memset(mems, 'b', 4);
+	i = 0;
 
-	printf("TRUE memcpy\n");
-	memcpy(memsdest, mems, 4);
-	printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
-	printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
-	printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
-	printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
-	
-	printf("MY memcpy\n");
-	ft_memcpy(memsdest, mems, 4);
-	printf("str[0] = %c (%d) || dst[0] = %c (%d)\n", mems[0], mems[0], memsdest[0], memsdest[0]);
-	printf("str[1] = %c (%d) || dst[1] = %c (%d)\n", mems[1], mems[1], memsdest[1], memsdest[1]);
-	printf("str[2] = %c (%d) || dst[2] = %c (%d)\n", mems[2], mems[2], memsdest[2], memsdest[2]);
-	printf("str[3] = %c (%d) || dst[3] = %c (%d)\n", mems[3], mems[3], memsdest[3], memsdest[3]);
+	memset(b1, 33, 100);
+	memset(b2, 63, 100);
+
+	ft_memcpy(b1, b2, 100);
+	if (memcmp(b1, b2, 100) == 0)
+		is_ok(1);
+	else
+		is_ok(0);
+	if (ft_memcpy(b1, b2, 0) != b1)
+		is_ok(1);
+	else
+		is_ok(0);
 }
 
 void	check_putchar (void)
@@ -314,7 +345,7 @@ void	check_putchar (void)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isprint(test) == isprint(test))
 			ft_putchar(test);
@@ -333,7 +364,7 @@ void    check_putchar_fd (int fd)
 	int test;
 
 	test = '!';
-	while (test != '~')
+	while (test != 127)
 	{
 		if (ft_isprint(test) == isprint(test))
 			ft_putchar_fd(test, fd);
@@ -373,9 +404,9 @@ int main(void)
     check_toupper();
     printf("\n\nft_tolower : ");
     check_tolower();
-    printf("\n\n[BONUS] - ft_islower : \n");
+    printf("\n\n[BONUS] - ft_islower : ");
     check_islower();
-    printf("\n\n[BONUS] - ft_isupper : \n");
+    printf("\n\n[BONUS] - ft_isupper : ");
     check_isupper();
     printf("\n\n[BONUS] - ft_isspace : ");
     check_isspace();
@@ -390,19 +421,17 @@ int main(void)
     check_strlen("0");
     check_strlen("0");
     check_strlen("0");
-    printf("\n\nft_puts :\n\n");
-    check_puts("Aaaaa");
-    check_puts("Bbbbb");
-    check_puts("Ccccc");
-    printf("\n\nft_memset : \n");
+    printf("\n\nft_puts : ");
+    check_puts();
+    printf("\n\nft_memset : ");
     check_memset();
-    printf("\n\nft_memcpy : \n");
+    printf("\n\nft_memcpy : ");
     check_memcpy();
     printf("\n\nft_strdup : \n");
     check_strdup();
-    printf("\n\nft_strcat : \n");
+    printf("\n\nft_strcat : ");
     check_strcat();
-    // ft_cat(1);
+    ft_cat(0);
     printf("\n\nBonus : \n");
     printf("\n\nft_putchar : \n");
     check_putchar();
