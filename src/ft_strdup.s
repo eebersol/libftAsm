@@ -5,20 +5,24 @@ section .text
 
 _ft_strdup:
 	enter 16,0
+	cmp rdi, 0;
+	je fail
 
-	mov r15, rdi 		; Je save la source
+	mov rbx, rdi
 	call _ft_strlen		; je calcule sa len
+	mov r12, rax
 
-	lea r12, [rax * 8]	; Je multiplie mon nombre de char par 8 pour avoir le nombre de bit
-	mov rdi, r12		; Je donne a malloc la size que je souhaite
+	mov rdi, rax		; Je donne a malloc la size que je souhaite
 	call _malloc
 	
 	mov rdi, rax		; Je donne ma zone allouée
-	mov rsi, r15		; Je lui donne la string a copier
 	mov rcx, r12		; je lui donne sa longeur
-	cld
+	mov rsi, rbx
 	rep movsb			; je lance literation
 
 end:
 	leave
 	ret
+
+fail:
+	mov rax, 0;

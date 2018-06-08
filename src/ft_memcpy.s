@@ -6,10 +6,9 @@ _ft_memcpy:
 	je done_zero
 	xor rcx, rcx 			; Met a zero le compteur
 
-	mov rax, [rsi + rcx] 	; Value a modifier
+	mov rax, rsi 			; Value a modifier
 	mov rcx, rdx			; nombre d iteration
-	cld						; type diteration
-	rep stosb				; iteration
+	rep movsb				; iteration
 	jmp done
 
 done_zero:

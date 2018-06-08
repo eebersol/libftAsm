@@ -52,10 +52,12 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
+	@echo "rm .o"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
+	@echo  "rm $(NAME)"
 
 re: fclean all
 

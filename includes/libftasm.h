@@ -36,7 +36,7 @@ char	*ft_strdup(const char *s);
 /*
 ** PART3 :
 */
-void	*ft_cat(int fd);
+void ft_cat(int fd);
 /*
 ** BONUS :
 */

@@ -256,11 +256,17 @@ void check_strcat(void)
 	if (strcmp(buf, "Bonjour.") == 0)
 		is_ok(1);
 	else
+	{
+		printf("buf : [%s]\n", buf);
 		is_ok(0);
+	}
 	if (buf == ft_strcat(buf, ""))
 		is_ok(1);
 	else
+	{
+		printf("buf : [%s]\n", buf);
 		is_ok(0);
+	}
 }
 
 void check_memset (void)
@@ -299,14 +305,33 @@ void    check_strdup(void)
 	**/
     char *str;
     char *new;
+    int i;
 
-    str = "COUCOU fskjdlfkjsdfksdjfs\n";
+    i = 0;
+    str = NULL;
     new = NULL;
-    new = strdup(str);
-    printf("%s -- %p - %p\n", new, (void*)new, (void*)str);
-    new = NULL;
-    new = ft_strdup(str);
-    printf("%s -- %p - %p\n", new, (void*)new, (void*)str);
+    // str = "COUCOU fskjdlfkjsdfksdjfs\n";
+    // new = NULL;
+    // new = strdup(str);
+    // printf("%s -- %p - %p\n", new, (void*)new, (void*)str);
+    // new = NULL;
+    // new = ft_strdup(str);
+    // printf("%s -- %p - %p\n", new, (void*)new, (void*)str);
+    // str = NULL;
+    // new = NULL;
+    while (i++ < 200)
+    {
+    	str = ft_strdup("0");
+    	new = strdup("0");
+    	//printf("str : %s\n new ; %s\n", str, new);
+    	str = ft_strdup(" Montpellier, first mentioned in a document of 985, was founded under a local feudal dynasty, the Guilhem, who combined two hamlets and built a castle and walls around the united settlement. The two surviving towers of the city walls, the Tour des Pins and the Tour de la Babotte, were built later, around the year 1200.");
+    	new = strdup(" Montpellier, first mentioned in a document of 985, was founded under a local feudal dynasty, the Guilhem, who combined two hamlets and built a castle and walls around the united settlement. The two surviving towers of the city walls, the Tour des Pins and the Tour de la Babotte, were built later, around the year 1200.");
+    	//printf("str : %s\n new ; %s\n", str, new);
+    	if (strcmp(str, new) == 0)
+    		is_ok(1);
+    	else
+    		is_ok(2);
+    }
 }
 
 void check_memcpy (void)
@@ -317,12 +342,16 @@ void check_memcpy (void)
 	** -------------------------------------------------------------------------
 	**/
 	char    b1[100], b2[100];
+	char    a1[100];
+	char *a2;
 	int i;
 
 	i = 0;
 
 	memset(b1, 33, 100);
 	memset(b2, 63, 100);
+	memset(a1, 33, 100);
+	a2 = "Je suis ici";
 
 	ft_memcpy(b1, b2, 100);
 	if (memcmp(b1, b2, 100) == 0)
@@ -333,6 +362,17 @@ void check_memcpy (void)
 		is_ok(1);
 	else
 		is_ok(0);
+
+	ft_memcpy(a1, a2, 30);
+	while (i++ < 11)
+	{
+		printf("a1 : %c a2 = %c\n", a1[i], a2[i]);
+	}
+
+	
+
+
+
 }
 
 void	check_putchar (void)
@@ -383,33 +423,49 @@ void    check_puts_fd (char *str, int fd)
     ft_puts_fd(str, fd);
 }
 
+void check_strcat2(void)
+{
+	char 	*dest;
+	char 	*dest_bis;
+
+	dest 		= (char*)malloc(sizeof(char)* 20);
+	dest_bis 		= (char*)malloc(sizeof(char)* 20);
+	ft_strcat(dest, "0");
+	strcat(dest_bis, "0");
+
+	printf("\nDest :%s\n", dest);
+	printf("Dest_bis :%s\n", dest_bis);
+
+	return ;
+}
+
 
 int main(void)
 {
     
     printf("Start testing :");
-    printf("\nft_bzero : ");
-    check_bzero();
-    printf("\nft_isalpha : ");
-    check_isalpha();
-    printf("\n\nft_isgit : ");
-    check_isdigit();
-    printf("\n\nft_isalnum : ");
-    check_isalnum();
-    printf("\n\nft_isascii : ");
-    check_isascii();
-    printf("\n\nft_isprint : ");
-    check_isprint();
-    printf("\n\nft_toupper : ");
-    check_toupper();
-    printf("\n\nft_tolower : ");
-    check_tolower();
-    printf("\n\n[BONUS] - ft_islower : ");
-    check_islower();
-    printf("\n\n[BONUS] - ft_isupper : ");
-    check_isupper();
-    printf("\n\n[BONUS] - ft_isspace : ");
-    check_isspace();
+    // printf("\nft_bzero : ");
+    // check_bzero();
+    // printf("\nft_isalpha : ");
+    // check_isalpha();
+    // printf("\n\nft_isgit : ");
+    // check_isdigit();
+    // printf("\n\nft_isalnum : ");
+    // check_isalnum();
+    // printf("\n\nft_isascii : ");
+    // check_isascii();
+    // printf("\n\nft_isprint : ");
+    // check_isprint();
+    // printf("\n\nft_toupper : ");
+    // check_toupper();
+    // printf("\n\nft_tolower : ");
+    // check_tolower();
+    // printf("\n\n[BONUS] - ft_islower : ");
+    // check_islower();
+    // printf("\n\n[BONUS] - ft_isupper : ");
+    // check_isupper();
+    // printf("\n\n[BONUS] - ft_isspace : ");
+    // check_isspace();
     printf("\n\nft_strlen : ");
     check_strlen("Aaaaa");
     check_strlen("Bbb");
@@ -421,25 +477,26 @@ int main(void)
     check_strlen("0");
     check_strlen("0");
     check_strlen("0");
-    printf("\n\nft_puts : ");
-    check_puts();
-    printf("\n\nft_memset : ");
-    check_memset();
+    // printf("\n\nft_puts : ");
+    // check_puts();
+    // printf("\n\nft_memset : ");
+    // check_memset();
     printf("\n\nft_memcpy : ");
     check_memcpy();
     printf("\n\nft_strdup : \n");
     check_strdup();
     printf("\n\nft_strcat : ");
     check_strcat();
-    ft_cat(0);
-    printf("\n\nBonus : \n");
-    printf("\n\nft_putchar : \n");
-    check_putchar();
-    printf("\n\n[BONUS] - ft_putchar_fd : \n");
-    check_putchar_fd(1);
-    printf("\n\n[BONUS] - ft_puts_fd : \n");
-    check_puts_fd("COUCOU", 0);
-    check_puts_fd("", 1);
-    check_puts_fd("COUCOU", 2);
+    check_strcat2();
+    // ft_cat(1);
+    // printf("\n\nBonus : \n");
+    // printf("\n\nft_putchar : \n");
+    // check_putchar();
+    // printf("\n\n[BONUS] - ft_putchar_fd : \n");
+    // check_putchar_fd(1);
+    // printf("\n\n[BONUS] - ft_puts_fd : \n");
+    // check_puts_fd("COUCOU", 0);
+    // check_puts_fd("", 1);
+    // check_puts_fd("COUCOU", 2);
     return (0);
 }

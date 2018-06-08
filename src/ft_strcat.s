@@ -3,28 +3,32 @@ section .text
 	extern _ft_strlen
 
 _ft_strcat:	
-	enter 16, 0
+	mov r8, rdi
 	cmp rdi, 0
+	je fail
+	cmp rsi, 0
 	je end
-	mov r9, rdi
-	push rdi
 
-	call _ft_strlen		; On appelle strlen avec la chaine envoyee
-	mov	r15, rax 		; On save la len de rdi
-	mov rdi, r9				; On recupere le pointeur sur le debut de rdi
-	push rdi			; On resave le pointeur
-	mov rax, rdi		; On copy rdi dans rax
-	xor rcx, rcx		; On met rcx a 0
+loopDest: ; mov pointer to dest end
+    cmp     byte [rdi], 0
+    je      loop
+    inc     rdi
+    jmp     loopDest
+
 
 loop:
 	cmp byte [rsi], 0
 	je end
-	mov al, [rsi] 		; On move le char [rsi] dans le registre de 8 octet
-	mov [rdi + r15], al ; On ajoute le caractere de rsi dans rdi 
+	mov rax, [rsi] 		; On move le char [rsi] dans le registre dans rax
+	mov [rdi], al 		; On ajoute le caractere de rsi contneu dans les 8 bit de al (plu petit registre de rax)
 	inc rsi				; On increment le pointeur sur rsi
-	inc r15				; On increment le compteur r15
+	inc rdi				; On increment le compteur r15
 	jmp loop
 
 end:
-	leave
+	mov rax, r8			; restore pointer on begin dest
+	mov byte [rdi], 0 ; add \0 at the end
+	ret
+
+fail:
 	ret
