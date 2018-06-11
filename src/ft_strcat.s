@@ -9,11 +9,11 @@ _ft_strcat:
 	cmp rsi, 0
 	je end
 
-loopDest: ; mov pointer to dest end
-    cmp     byte [rdi], 0
-    je      loop
-    inc     rdi
-    jmp     loopDest
+loopDest: 				; mov pointer to dest end
+    cmp byte [rdi], 0
+    je	loop
+    inc rdi
+    jmp	loopDest
 
 
 loop:
@@ -27,7 +27,7 @@ loop:
 
 end:
 	mov rax, r8			; restore pointer on begin dest
-	mov byte [rdi], 0 ; add \0 at the end
+	mov byte [rdi], 0 	; add \0 at the end
 	ret
 
 fail:

@@ -2,11 +2,11 @@ section .text
 	global _ft_strlen
 
 _ft_strlen:  
-    cmp rdi, 0                  ; Compare with nul asciim
-    je end                      ; if equal
+    cmp rdi, 0                  ; Compare with null ascii
+    je end                      ; if equal stop
 
-    xor rcx, rcx
-    xor rax, rax
+    xor rcx, rcx                ; init rcx at 0
+    xor rax, rax                ; init rax at 0
 
     not rcx                     ; on reverse le compteur permet quil soit negatif et donc pas pris en compte pas rep
     repne scasb                 ; scan bytes of a string until the trailing null character is found 

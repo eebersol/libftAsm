@@ -10,7 +10,7 @@ section .text
 
 _ft_puts:
     cmp rdi, 0
-    je null_value
+    je endBis
     mov rsi, rdi ; save start pointer
     call _ft_strlen
 
@@ -30,13 +30,14 @@ _ft_puts:
     syscall
     jmp end
 
-null_value:
+endBis:
+    mov rdx, null_len                 ;   null_len
     mov rax, 0x2000004                ; write
     mov rdi, 1                        ; stdout
-    mov rsi, null_str                 ;   null_str,
-    mov rdx, null_len                 ;   null_len
+    m lea rsi, [rel null_str]         ;   null_str,
     syscall
-    ret
+    jmp end
 
 end:
+    mov rax,10
     ret

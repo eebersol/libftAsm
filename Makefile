@@ -14,9 +14,7 @@ NAME 			= libfts.a
 
 NAME_TEST 		= test
 
-AS 				= nasm
-
-ASFLAGS 		= -f macho64
+ASFLAGS 		= nasm -f macho64
 
 CC 				= cc -Wall -Wextra -Werror
 
@@ -43,13 +41,17 @@ SRC 			=	src/ft_bzero.s \
 					src/bonus/ft_isspace.s \
 
 
-OBJ 			= $(SRC:.s=.o)
+OBJ 			= $(SRC:%.s=%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+
+%.o:%.s
+	$(ASFLAGS) $<
 
 clean:
 	@/bin/rm -f $(OBJ)

@@ -2,7 +2,6 @@ section .text
 	global _ft_tolower
 
 _ft_tolower:
-	mov rax, 1
 	cmp rdi, 65
 	jl fail
 	cmp rdi, 91

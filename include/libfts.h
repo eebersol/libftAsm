@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTASM_H
-# define LIBFTASM_H
-# include <string.h>
+#include <string.h>
 /*
 ** PART1 :
 */
@@ -47,5 +45,3 @@ char	ft_str_search(char *str, char find);
 int		ft_isupper(int c);
 int		ft_islower(int c);
 int		ft_isspace(int c);
-
-#endif

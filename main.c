@@ -240,6 +240,7 @@ void check_puts()
 		is_ok(1);
 	else
 		is_ok(0);
+	printf("True ret : %d - %d - %d ---- My ret : %d - %d - %d\n", puts("A"), puts("\0"), puts(NULL), ft_puts("A"), ft_puts("ABC"), ft_puts(NULL));
 }
 
 void check_strcat(void)
@@ -489,6 +490,17 @@ int main(void)
     check_strcat();
     check_strcat2();
     // ft_cat(1);
+<<<<<<< HEAD
+    printf("\n\nBonus : \n");
+    printf("\n\nft_putchar : \n");
+    check_putchar();
+    printf("\n\n[BONUS] - ft_putchar_fd : \n");
+    check_putchar_fd(1);
+    printf("\n\n[BONUS] - ft_puts_fd : \n");
+    check_puts_fd("COUCOU", 0);
+    check_puts_fd("", 1);
+    check_puts_fd("COUCOU", 2);
+=======
     // printf("\n\nBonus : \n");
     // printf("\n\nft_putchar : \n");
     // check_putchar();
@@ -498,5 +510,6 @@ int main(void)
     // check_puts_fd("COUCOU", 0);
     // check_puts_fd("", 1);
     // check_puts_fd("COUCOU", 2);
+>>>>>>> 04f33421197542c7223f736fb05698546a69715d
     return (0);
 }
